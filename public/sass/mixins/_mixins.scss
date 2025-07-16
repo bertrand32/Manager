@@ -1,0 +1,78 @@
+
+@mixin generateSizeClass($name, $value) {
+  .fs-#{$name} {
+    font-size: $value !important;
+  }
+}
+
+// mixins for border,text and background
+@mixin generateTextClass($colorName, $value) {
+  // :root {
+  //   --#{$variable-prefix}#{$colorName}: #{$value};
+  // }
+  .text-#{$colorName} {
+    color: $value !important;
+  }
+  @include generateTextHoverClass($colorName, $value);
+}
+@mixin generateBorderColor($colorName, $value) {
+  .border-#{$colorName} {
+    border-color: $value !important;
+  }
+}
+@mixin generateBackgroundClass($colorName, $value) {
+  // :root {
+  //   --#{$variable-prefix}#{$colorName}-rgb: #{$value};
+  // }
+  .bg-#{$colorName} {
+    background-color: $value !important;
+  }
+  @include generateBgHoverClass($colorName, $value);
+}
+
+// mixins for hover
+@mixin generateTextHoverClass($colorName, $value) {
+  .text-hover-#{$colorName} {
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: $value !important;
+    }
+  }
+}
+@mixin generateBgHoverClass($colorName, $value) {
+  .bg-hover-#{$colorName} {
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background-color: $value !important;
+    }
+  }
+}
+
+// global mxin
+@mixin makeAsGlobalColors($colorName, $value) {
+  @include generateBackgroundClass($colorName, $value);
+  @include generateBorderColor($colorName, $value);
+  @include generateTextClass($colorName, $value);
+}
+//dark theme / light theme
+@mixin theme($theme) {
+  background-color: map-get($theme, "background");
+  color: map-get($theme, "text");
+
+  .bg-perso {
+    background: linear-gradient(to bottom, map-get($theme, "background"), map-get($theme, "color-bottom"));
+  }
+
+  .bg-danger {
+    background: linear-gradient(to right, map-get($theme, "color-start"), map-get($theme, "color-end"));
+  }
+
+  .text-dark {
+    color: map-get($theme, "text") !important;
+  }
+
+  .text-light {
+    color: map-get($theme, "secondary") !important;
+  }
+}
+

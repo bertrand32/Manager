@@ -1,0 +1,15 @@
+<div class="d-flex gap-4">
+    <div class="">
+      <button class="bg-white border rounded-3 p-3 px-4" role="button"
+        (click)="toggleTheme()"
+        aria-label="Toggle Dark Mode"
+        >
+        <span *ngIf="isDarkMode" class="">
+          <i class="fa-solid fa-moon fs-l-medium"></i>
+        </span>
+        <span  *ngIf="!isDarkMode" class="">
+          <i class="fa-solid fa-sun fs-l-medium"></i>
+        </span>
+      </button>
+  </div>
+</div>

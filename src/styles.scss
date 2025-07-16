@@ -1,1 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary: #133236;
+$white: #ffffff;
+$light: #ff6600;
+$warning:#ff3300ea;
+$secondary: #1a124173;
+$dark: #000000;
+$info: #6e0303;
+
+$color-start: #133236;
+$color-end: #4E8A8E;
+$color-bottom: $secondary;
+
+
+$otherGlobalColors: (
+  "primary-1":#286A72,
+  "primary-2": #87999b,
+  "dark-less": #232323,
+);
+
+@import "bootstrap/scss/bootstrap";
+
+
+// global font-sizes
+$fontSizes: (
+  "xv-large": 80px,
+  "xxx-large": 40px,
+  "xx-large": 35px,
+  "x-large": 28px,
+  "large": 24px,
+  "l-medium": 20px,
+  "medium": 18px,
+  "normal": 16px,
+  "l-small": 15px,
+  "small": 14px,
+  "x-small": 12px,
+  "xx-small": 10px,
+  "xxx-small": 8px,
+);
+
+// global border color
+:root {
+  --bs-border-color: #c4c4c4;
+}
+// reset link
+a {
+  text-decoration: none !important;
+}
+
+//global border radius
+.xx-lg-radius {
+  border-radius: 20px;
+}
+.x-lg-radius {
+  border-radius: 15px;
+}
+.lg-radius {
+  border-radius: 10px;
+}
+.sm-radius {
+  border-radius: 5px;
+}
+.x-sm-radius {
+  border-radius: 3px;
+}
+
+//global image class
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+//global cursor class
+.clickable {
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.not-clickable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+// font family global class
+.font-calibri {
+  font-family: calibri !important;
+}
+
+.font-mulish {
+  font-family: mulish !important;
+}
+
+.font-inter {
+  font-family: inter !important;
+}
+.font-baskervville {
+  font-family: Baskervville !important;
+}
+.font-montserrat {
+  font-family: montserrat !important;
+}
+.font-garet {
+  font-family: Garet !important;
+}
