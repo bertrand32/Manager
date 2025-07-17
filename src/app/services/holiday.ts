@@ -1,8 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Holiday } from '../models/holiday';
 
+export interface Holiday {
+  country: string,
+  iso: string,
+  year: number,
+  date: number,
+  day: string,
+  name: string,
+  type: string,
+}
 @Injectable({
   providedIn: 'root'
 })

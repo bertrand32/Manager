@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component} from '@angular/core';
 import { Mode } from "./mode/mode";
 import { Holiday } from './models/holiday';
 import { HolidayService } from './services/holiday';
@@ -7,40 +7,42 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Mode,HttpClientModule],
+  imports: [CommonModule, HttpClientModule, Mode],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-   menus = ['Add', 'Active', 'Inactive',];
-   ActiveMenu = 'Add';
-   holidays: Holiday[] = [];
-   error = '';
-   isloading = true;
-
-  setActive(menu: string) {
+  menus = ['Add', 'Active', 'Inactive',];
+  ActiveMenu = 'Add';
+  isloading = true
+  holidays: Holiday[] = [];
+   setActive(menu: string) {
     this.ActiveMenu = menu;
 
     if(menu === 'Active'){
-      this.fetchHolidays()
+      this.loadHolidays()
     }
   }
   constructor(private holidayService: HolidayService) {}
 
-  fetchHolidays() {
-   this.isloading = true;
-   this.holidayService.getHolidays().subscribe({
-    next: data => {
-      this.holidays = data;
-      this.isloading = false;
-    },
-    error: (err) => {
-      console.error(err);
-      this.isloading = false;
-    },
-   });
+  ngOnInit(): void {
+    this.loadHolidays();
   }
-  users=[
+
+  loadHolidays(): void {
+    this.holidayService.getHolidays().subscribe({
+      next: (data) => {
+        this.holidays = data;
+        this.isloading = false
+        console.log('Holidays:', data);
+      },
+      error: (error) => {
+        this.isloading = false
+        console.error('Erreur API :', error);
+      }
+    });
+  }
+    users=[
     { name: 'DevLens', description: 'Quickly inspect page layouts and visualize element boundaries.', active: true },
     { name: 'StyleSpy', description: 'Instantly analyze and copy CSS from any webpage element.', active: true },
     { name: 'SpeedBoost', description: 'Optimizes browser resource usage to accelerate page loading.', active: false },
@@ -54,5 +56,4 @@ export class App {
     { name: 'DOM Snapshot', description: 'Capture and export DOM structures quickly.', active: false },
     { name: 'ConsolePlus', description: 'Enhanced developer console with advanced filtering.', active: true }
   ]
-  
 }

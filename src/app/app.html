@@ -86,33 +86,23 @@
   }
    @if (ActiveMenu ==="Active") {
     <div class="container mt-5">
-    <h2 class="mb-4 text-center">Jours Fériés au Canada en 2025</h2>
+    <h2 class="mb-4 text-center">Public Holidays in Canada in 2025</h2>
 
-  @if (isloading) {
-   <div class="text-center">
-    <div class="spinner-border text-secondary">
-      <span class="visually-hidden">loading...</span>
-    </div>
-   </div>
-  }
-
-  @if (!isloading) {
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+   <div class="row row-cols-1 row-cols-md-3 g-4">
     @for (holiday of holidays; track $index) {
       <div class="col">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm p-3 rounded-5">
           <div class="card-body">
             <h5 class="card-title">{{ holiday.name }}</h5>
-            <p class="card-text mb-1"><strong>Date:</strong> {{ holiday.date }}</p>
-            <p class="card-text mb-1"><strong>Jour:</strong> {{ holiday.day }}</p>
+            <p class="card-text mt-3"><strong>Date:</strong> {{ holiday.date }}</p>
+            <p class="card-text"><strong>Day:</strong> {{ holiday.day }}</p>
             <p class="card-text"><strong>Type:</strong> {{ holiday.type }}</p>
           </div>
         </div>
       </div>
     }
   </div>
-  }
-</div>
+  </div>
   }
   </section>
 </main>
