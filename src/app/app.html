@@ -14,12 +14,12 @@
 
 <!--main-->
 <main>
-  <section class="container mt-5">
+  <section class="container mt-5 d-none d-xl-block">
    <div class="row">
-     <div class="col-md-9">
+     <div class="col-md-6">
         <h1 >Extensions List</h1>
      </div>
-     <div class="col-md-3 p-2 d-flex justify-content-end gap-2">
+     <div class="col-md-6 p-2 d-flex justify-content-end gap-3">
       @for (menu of menus; track $index) {
        <span class="">
         <button class="p-2 px-3 rounded-pill border-0 fw-normal"
@@ -36,8 +36,30 @@
    </div>
   </section>
 
+  <section class="container mt-5 d-block d-lg-none">
+    <div class="row">
+     <div class="col-md-6 d-flex justify-content-center">
+        <h1 >Extensions List</h1>
+     </div>
+     <div class="col-md-6 p-2 d-flex justify-content-center gap-3">
+      @for (menu of menus; track $index) {
+       <span class="">
+        <button class="p-2 px-3 rounded-pill border-0 fw-normal"
+         [ngClass]="{
+          'bg-warning text-dark': menu === ActiveMenu,
+          'bg-secondary text-white bg-hover-primary-2 text-hover-all-dark': menu !== ActiveMenu
+         }"
+         (click)="setActive(menu)">
+         {{ menu }}
+        </button>
+       </span>
+      }
+     </div>
+    </div>
+  </section>
+
   <section> 
-    @if (ActiveMenu === "Add") {
+  @if (ActiveMenu === "Add") {
      <div class="container my-4">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @for (user of users; track $index) {
@@ -53,7 +75,7 @@
           <div class="d-flex align-items-center justify-content-between">
            <button class="btn border rounded-pill text-dark">Remove</button>
            <div class="form-check form-switch">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
+            <input class="form-check-input" type="checkbox" id="">
            </div>
           </div>
         </div>
@@ -61,7 +83,36 @@
     }
     </div>
     </div>
+  }
+   @if (ActiveMenu ==="Active") {
+    <div class="container mt-5">
+    <h2 class="mb-4 text-center">Jours Fériés au Canada en 2025</h2>
+
+  @if (isloading) {
+   <div class="text-center">
+    <div class="spinner-border text-secondary">
+      <span class="visually-hidden">loading...</span>
+    </div>
+   </div>
+  }
+
+  @if (!isloading) {
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (holiday of holidays; track $index) {
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ holiday.name }}</h5>
+            <p class="card-text mb-1"><strong>Date:</strong> {{ holiday.date }}</p>
+            <p class="card-text mb-1"><strong>Jour:</strong> {{ holiday.day }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ holiday.type }}</p>
+          </div>
+        </div>
+      </div>
     }
-   
+  </div>
+  }
+</div>
+  }
   </section>
 </main>
